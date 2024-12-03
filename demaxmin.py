@@ -10,7 +10,7 @@ if "nieve" not in st.session_state:
 
 # Mostrar copos de nieve solo al inicio
 if not st.session_state.nieve:
-        #st.snow()
+        st.snow()
         st.session_state.nieve = True
 
 # Función para validar texto
