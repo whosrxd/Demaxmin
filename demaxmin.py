@@ -251,21 +251,17 @@ elif st.session_state.pagina == "Resolver":
                 costo_valor = costos.loc[costo_minimo, destino]
 
                 if '(' in str(costo_valor):
-                    try:
-                        # Si tiene paréntesis, hacemos la multiplicación
-                        costo_num, asignacion = costo_valor.split('(')
-                        asignacion = asignacion.rstrip(')')  # Limpiar el paréntesis de la asignación
+                    # Si tiene paréntesis, hacemos la multiplicación
+                    costo_num, asignacion = costo_valor.split('(')
+                    asignacion = asignacion.rstrip(')')  # Limpiar el paréntesis de la asignación
 
-                        # Asegurarse de que los valores no sean vacíos
-                        if costo_num.strip() and asignacion.strip():
-                            costo_num = int(float(costo_num.strip()))  # Convertir a entero
-                            asignacion = int(float(asignacion.strip()))  # Convertir a entero
+                    # Asegurarse de que los valores no sean vacíos
+                    if costo_num.strip() and asignacion.strip():
+                        costo_num = int(float(costo_num.strip()))  # Convertir a entero
+                        asignacion = int(float(asignacion.strip()))  # Convertir a entero
 
-                            operaciones.append(f"{costo_num}({asignacion})")
-                            total_costo += costo_num * asignacion
-                    except (ValueError, TypeError) as error:
-                        # Mostrar error detallado de la excepción
-                        st.error(f"Error al convertir los valores: costo_num='{costo_num}' asignacion='{asignacion}'. Excepción: {error}")
+                        operaciones.append(f"{costo_num}({asignacion})")
+                        total_costo += costo_num * asignacion
                         
         # Mostrar la expresión de Z
         st.write("Z = " + " + ".join(operaciones))
